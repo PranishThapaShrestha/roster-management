@@ -11,6 +11,10 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository repo;
 
+    public CustomUserDetailsService(UserRepository repo) {
+        this.repo = repo;
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
