@@ -1,6 +1,8 @@
 package com.nff.security.jwtutil;
 
+import com.nff.security.entity.UserEntity;
 import com.nff.security.repository.UserRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -18,6 +20,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+
+        UserEntity user= repo.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("User not found "));
+
+
+        return new org.springframework.security.core.userdetails
+                .User(user.getUsername()
+                ,user.getPassword()
+                ,user.getRoles().stream().map(SimpleGrantedAuthority::new).toList());
     }
 }

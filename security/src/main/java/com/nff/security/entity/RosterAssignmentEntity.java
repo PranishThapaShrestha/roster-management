@@ -1,6 +1,5 @@
-package com.nff.security.rosterentity;
+package com.nff.security.entity;
 
-import com.nff.security.users.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
 

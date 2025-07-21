@@ -17,7 +17,10 @@ public class JwtUtil {
     private long jwtExpiration;
 
     public String generateToken(String username, String roles) {
-        return Jwts.builder().setSubject(username).claim("roles", roles).setIssuedAt(new Date())
+        return Jwts.builder()
+                .setSubject(username)
+                .claim("roles", roles)
+                .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpiration))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret)
                 .compact();

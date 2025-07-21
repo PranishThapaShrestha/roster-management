@@ -1,4 +1,4 @@
-package com.nff.security.users;
+package com.nff.security.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
